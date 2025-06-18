@@ -1,64 +1,54 @@
-<!-- app/Views/products/form.php -->
 <?= $this->extend('layouts/app') ?>
 
 <?= $this->section('content') ?>
-<div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-semibold mb-6">TAMBAH / EDIT PRODUK</h1>
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h5 class="card-title mb-0"><?= isset($product) ? 'Edit Produk' : 'Tambah Produk Baru' ?></h5>
+    </div>
+    <div class="card-body">
+        <form action="<?= isset($product) ? base_url('products/update/' . $product['id']) : base_url('products') ?>" method="post" enctype="multipart/form-data">
+            <?= csrf_field() ?>
+            <?php if (isset($product)) : ?>
+                <input type="hidden" name="_method" value="PUT">
+            <?php endif; ?>
 
-    <div class="bg-white shadow-md rounded-lg p-6">
-        <form action="#" method="POST">
-            <div class="mb-4">
-                <label for="kode_produk" class="block text-gray-700 text-sm font-bold mb-2">Kode Produk:</label>
-                <input type="text" id="kode_produk" name="kode_produk" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Kode Produk">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nama Produk</label>
+                <input type="text" class="form-control" id="name" name="name" value="<?= old('name', $product['name'] ?? '') ?>" required>
             </div>
 
-            <div class="mb-4">
-                <label for="nama_produk" class="block text-gray-700 text-sm font-bold mb-2">Nama Produk:</label>
-                <input type="text" id="nama_produk" name="nama_produk" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Nama Produk">
+            <div class="mb-3">
+                <label for="stock" class="form-label">Stok</label>
+                <input type="number" class="form-control" id="stock" name="stock" value="<?= old('stock', $product['stock'] ?? 0) ?>" required>
             </div>
 
-            <div class="mb-4">
-                <label for="kategori" class="block text-gray-700 text-sm font-bold mb-2">Kategori:</label>
-                <select id="kategori" name="kategori" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="">Pilih Kategori</option>
-                    <option value="elektronik">Elektronik</option>
-                    <option value="pakaian">Pakaian</option>
-                    <option value="makanan">Makanan</option>
-                </select>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="price" class="form-label">Harga Jual</label>
+                    <input type="number" class="form-control" id="price" name="price" value="<?= old('price', $product['price'] ?? '') ?>" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="purchase_price" class="form-label">Harga Beli</label>
+                    <input type="number" class="form-control" id="purchase_price" name="purchase_price" value="<?= old('purchase_price', $product['purchase_price'] ?? '') ?>">
+                </div>
             </div>
 
-            <div class="mb-4">
-                <label for="harga_beli" class="block text-gray-700 text-sm font-bold mb-2">Harga Beli:</label>
-                <input type="number" id="harga_beli" name="harga_beli" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Harga Beli">
+            <div class="mb-3">
+                <label for="description" class="form-label">Deskripsi</label>
+                <textarea class="form-control" id="description" name="description" rows="3"><?= old('description', $product['description'] ?? '') ?></textarea>
             </div>
 
-            <div class="mb-4">
-                <label for="harga_jual" class="block text-gray-700 text-sm font-bold mb-2">Harga Jual:</label>
-                <input type="number" id="harga_jual" name="harga_jual" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Harga Jual">
+            <div class="mb-3">
+                <label for="image" class="form-label">Gambar Produk</label>
+                <input class="form-control" type="file" id="image" name="image">
+                <?php if (isset($product) && $product['image']) : ?>
+                    <img src="<?= base_url('uploads/' . $product['image']) ?>" alt="<?= esc($product['name']) ?>" class="img-thumbnail mt-2" width="150">
+                <?php endif; ?>
             </div>
 
-            <div class="mb-4">
-                <label for="stok_minimal" class="block text-gray-700 text-sm font-bold mb-2">Stok Minimal:</label>
-                <input type="number" id="stok_minimal" name="stok_minimal" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Stok Minimal">
-            </div>
-
-            <div class="mb-4">
-                <label for="deskripsi" class="block text-gray-700 text-sm font-bold mb-2">Deskripsi:</label>
-                <textarea id="deskripsi" name="deskripsi" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Deskripsi Produk"></textarea>
-            </div>
-
-            <div class="mb-6">
-                <label for="gambar_produk" class="block text-gray-700 text-sm font-bold mb-2">Upload Gambar:</label>
-                <input type="file" id="gambar_produk" name="gambar_produk" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-
-            <div class="flex items-center justify-between">
-                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Simpan
-                </button>
-                <a href="#" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                    Batal
-                </a>
+            <div class="d-flex justify-content-end">
+                <a href="<?= base_url('products') ?>" class="btn btn-secondary me-2">Batal</a>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
     </div>

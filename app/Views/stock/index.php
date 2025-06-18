@@ -2,86 +2,71 @@
 <?= $this->extend('layouts/app') ?>
 
 <?= $this->section('content') ?>
-<div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-semibold mb-6">TRANSAKSI STOK</h1>
+<h4 class="mb-3">Transaksi Stok</h4>
 
-    <div class="flex mb-4">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l focus:outline-none">Stok Masuk</button>
-        <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r focus:outline-none">Stok Keluar</button>
+<ul class="nav nav-tabs mb-3" id="stockTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="stock-in-tab" data-bs-toggle="tab" data-bs-target="#stock-in" type="button" role="tab" aria-controls="stock-in" aria-selected="true">Stok Masuk</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="stock-out-tab" data-bs-toggle="tab" data-bs-target="#stock-out" type="button" role="tab" aria-controls="stock-out" aria-selected="false">Stok Keluar</button>
+    </li>
+</ul>
+
+<div class="tab-content" id="stockTabContent">
+    <!-- Stok Masuk Panel -->
+    <div class="tab-pane fade show active" id="stock-in" role="tabpanel" aria-labelledby="stock-in-tab">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form action="<?= base_url('stock/in') ?>" method="post">
+                    <?= csrf_field() ?>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="date_in" class="form-label">Tanggal</label>
+                            <input type="date" class="form-control" id="date_in" name="date" value="<?= date('Y-m-d') ?>" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="description_in" class="form-label">Deskripsi</label>
+                            <input type="text" class="form-control" id="description_in" name="description" placeholder="Contoh: Pembelian dari supplier" required>
+                        </div>
+                    </div>
+                    <!-- Dynamic product rows will be handled by JavaScript -->
+                    <div id="stock-in-items"></div>
+                    <button type="button" id="add-stock-in-item" class="btn btn-secondary btn-sm mb-3">Tambah Produk</button>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Simpan Stok Masuk</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-                <label for="no_transaksi" class="block text-gray-700 text-sm font-bold mb-2">No. Transaksi:</label>
-                <input type="text" id="no_transaksi" name="no_transaksi" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="[Auto]" readonly>
+    <!-- Stok Keluar Panel -->
+    <div class="tab-pane fade" id="stock-out" role="tabpanel" aria-labelledby="stock-out-tab">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form action="<?= base_url('stock/out') ?>" method="post">
+                    <?= csrf_field() ?>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="date_out" class="form-label">Tanggal</label>
+                            <input type="date" class="form-control" id="date_out" name="date" value="<?= date('Y-m-d') ?>" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="description_out" class="form-label">Deskripsi</label>
+                            <input type="text" class="form-control" id="description_out" name="description" placeholder="Contoh: Penjualan atau barang rusak" required>
+                        </div>
+                    </div>
+                    <!-- Dynamic product rows will be handled by JavaScript -->
+                    <div id="stock-out-items"></div>
+                    <button type="button" id="add-stock-out-item" class="btn btn-secondary btn-sm mb-3">Tambah Produk</button>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Simpan Stok Keluar</button>
+                    </div>
+                </form>
             </div>
-            <div>
-                <label for="tanggal" class="block text-gray-700 text-sm font-bold mb-2">Tanggal:</label>
-                <input type="date" id="tanggal" name="tanggal" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-        </div>
-
-        <div class="mb-4">
-            <label for="cari_produk" class="block text-gray-700 text-sm font-bold mb-2">Cari Produk:</label>
-            <input type="text" id="cari_produk" name="cari_produk" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Cari Produk...">
-        </div>
-
-        <div class="overflow-x-auto mb-6">
-            <table class="min-w-full leading-normal">
-                <thead>
-                    <tr>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kode</th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Produk</th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Jumlah</th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Keterangan</th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Example rows, to be populated dynamically -->
-                    <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">P001</td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">Produk A</td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">10</td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">Pembelian awal</td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <button class="text-red-600 hover:text-red-900">-</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">P002</td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">Produk B</td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">5</td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">Untuk penjualan</td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <button class="text-red-600 hover:text-red-900">-</button>
-                        </td>
-                    </tr>
-                    <!-- Add new item row -->
-                    <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><input type="text" class="w-full border rounded p-1"></td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><input type="text" class="w-full border rounded p-1"></td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><input type="number" class="w-full border rounded p-1"></td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><input type="text" class="w-full border rounded p-1"></td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <button class="text-green-600 hover:text-green-900">+</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="mb-6">
-            <label for="catatan" class="block text-gray-700 text-sm font-bold mb-2">Catatan:</label>
-            <textarea id="catatan" name="catatan" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Tambahkan catatan transaksi"></textarea>
-        </div>
-
-        <div class="flex items-center justify-end">
-            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Simpan Transaksi
-            </button>
         </div>
     </div>
 </div>
+
 <?= $this->endSection() ?>

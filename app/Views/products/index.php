@@ -1,73 +1,58 @@
-<!-- app/Views/products/index.php -->
 <?= $this->extend('layouts/app') ?>
 
 <?= $this->section('content') ?>
-<div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-semibold mb-6">DAFTAR PRODUK</h1>
-
-    <div class="flex justify-between items-center mb-4">
-        <div>
-            <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Tambah Produk</a>
-            <a href="#" class="ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">Import</a>
-        </div>
-        <div class="flex">
-            <input type="text" placeholder="Search..." class="border p-2 rounded-l">
-            <select class="border p-2 rounded-r">
-                <option>Filter</option>
-                <option>Kategori 1</option>
-                <option>Kategori 2</option>
-            </select>
+<div class="card shadow-sm">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0">Daftar Produk</h5>
+            <a href="<?= base_url('products/new') ?>" class="btn btn-primary btn-sm">Tambah Produk</a>
         </div>
     </div>
-
-    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <table class="min-w-full leading-normal">
-            <thead>
-                <tr>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kode</th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama</th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Stok</th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Harga</th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kategori</th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Example Rows (will be replaced by dynamic data) -->
-                <tr>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">P001</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">Produk A</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">20</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">Rp 10.000</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">Elektronik</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                        <a href="#" class="text-blue-600 hover:text-blue-900">Edit</a>
-                        <a href="#" class="text-red-600 hover:text-red-900 ml-3">Hapus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">P002</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">Produk B</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">15</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">Rp 25.000</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">Pakaian</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                        <a href="#" class="text-blue-600 hover:text-blue-900">Edit</a>
-                        <a href="#" class="text-red-600 hover:text-red-900 ml-3">Hapus</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="flex justify-center mt-6">
-        <nav class="relative z-0 inline-flex shadow-sm -space-x-px" aria-label="Pagination">
-            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">Previous</a>
-            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">1</a>
-            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">2</a>
-            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
-            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">Next</a>
-        </nav>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Nama</th>
+                        <th>Stok</th>
+                        <th>Harga</th>
+                        <th>Kategori</th>
+                        <th class="text-end">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($products)) : ?>
+                        <?php foreach ($products as $product) : ?>
+                            <tr>
+                                <td><?= esc($product['code']) ?></td>
+                                <td><?= esc($product['name']) ?></td>
+                                <td><?= esc($product['stock']) ?></td>
+                                <td>Rp <?= number_format($product['price'], 0, ',', '.') ?></td>
+                                <td><?= esc($product['category_name']) ?></td>
+                                <td class="text-end">
+                                    <a href="<?= base_url('products/edit/' . $product['id']) ?>" class="btn btn-warning btn-sm">Edit</a>
+                                    <form action="<?= base_url('products/delete/' . $product['id']) ?>" method="post" class="d-inline">
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <tr>
+                            <td colspan="6" class="text-center">Tidak ada produk yang ditemukan.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="d-flex justify-content-end">
+            <?php // echo $pager->links() ?>
+        </div>
     </div>
 </div>
 <?= $this->endSection() ?>

@@ -5,17 +5,31 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-#$routes->get('/', 'Home::index');
-$routes->get('dashboard/', 'Dashboard::index');
-$routes->get('testdb', 'DatabaseTest::index');
-$routes->get('/login', 'Auth::index');
-$routes->post('/login', 'Auth::login');
+// Redirect root to login page
+$routes->get('/', 'Auth::index');
+
+// Authentication routes
+$routes->get('login', 'Auth::index');
+$routes->post('login', 'Auth::login');
 $routes->get('logout', 'Auth::logout');
-$routes->get('products', 'Product::index');
-$routes->get('products/detail/(:segment)', 'Product::detail/$1');
-$routes->get('products/new', 'Product::new');
-$routes->post('products/create', 'Product::create');
-$routes->get('products/edit/(:segment)', 'Product::edit/$1');
-$routes->post('products/update/(:segment)', 'Product::update/$1');
-$routes->get('stock', 'Stock::index');
-$routes->get('reports', 'Reports::index');
+$routes->get('register', 'Auth::register');
+$routes->post('register', 'Auth::createAccount');
+$routes->get('forgot-password', 'Auth::forgotPassword');
+$routes->post('forgot-password', 'Auth::sendResetLink');
+
+// Application routes (protected by auth filter)
+$routes->group('', ['filter' => 'auth'], static function ($routes) {
+    $routes->get('dashboard', 'Dashboard::index');
+    
+    // Product routes
+    $routes->resource('products', ['controller' => 'Product']);
+
+    // Stock routes
+    $routes->get('stock', 'Stock::index');
+    $routes->post('stock/in', 'Stock::stockIn');
+    $routes->post('stock/out', 'Stock::stockOut');
+
+    // Report routes
+    $routes->get('reports', 'Reports::index');
+    $routes->post('reports/generate', 'Reports::generate');
+});

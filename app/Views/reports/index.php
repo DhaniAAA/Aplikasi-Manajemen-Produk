@@ -1,50 +1,54 @@
-<!-- app/Views/reports/index.php -->
 <?= $this->extend('layouts/app') ?>
 
 <?= $this->section('content') ?>
-<div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-semibold mb-6">LAPORAN</h1>
+<h4 class="mb-3">Laporan</h4>
 
-    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-                <label for="jenis_laporan" class="block text-gray-700 text-sm font-bold mb-2">Jenis Laporan:</label>
-                <select id="jenis_laporan" name="jenis_laporan" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="stok">Laporan Stok</option>
-                    <option value="transaksi">Laporan Transaksi</option>
-                    <option value="inventaris">Laporan Nilai Inventaris</option>
-                </select>
-            </div>
-            <div class="flex items-end space-x-4">
-                <div>
-                    <label for="periode_dari" class="block text-gray-700 text-sm font-bold mb-2">Dari:</label>
-                    <input type="date" id="periode_dari" name="periode_dari" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+<div class="card shadow-sm mb-4">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Filter Laporan</h5>
+    </div>
+    <div class="card-body">
+        <form action="<?= base_url('reports/generate') ?>" method="post">
+            <?= csrf_field() ?>
+            <div class="row align-items-end">
+                <div class="col-md-4 mb-3">
+                    <label for="report_type" class="form-label">Jenis Laporan</label>
+                    <select id="report_type" name="report_type" class="form-select">
+                        <option value="stock">Laporan Stok</option>
+                        <option value="sales">Laporan Penjualan</option>
+                        <option value="inventory_value">Laporan Nilai Inventaris</option>
+                    </select>
                 </div>
-                <div>
-                    <label for="periode_sampai" class="block text-gray-700 text-sm font-bold mb-2">Sampai:</label>
-                    <input type="date" id="periode_sampai" name="periode_sampai" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <div class="col-md-3 mb-3">
+                    <label for="start_date" class="form-label">Dari Tanggal</label>
+                    <input type="date" id="start_date" name="start_date" class="form-control">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="end_date" class="form-label">Sampai Tanggal</label>
+                    <input type="date" id="end_date" name="end_date" class="form-control">
+                </div>
+                <div class="col-md-2 mb-3 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary w-100">Tampilkan</button>
                 </div>
             </div>
-        </div>
-
-        <div class="flex justify-end space-x-4 mb-6">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Filter</button>
-            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none">Reset</button>
-        </div>
-
-        <div class="bg-gray-100 border border-gray-300 rounded p-4 h-64 flex items-center justify-center text-gray-500 mb-6">
-            <!-- Area Laporan: Menampilkan data dalam bentuk tabel atau grafik sesuai jenis laporan -->
-            <p>Data laporan akan ditampilkan di sini.</p>
-        </div>
-
-        <div class="flex items-center justify-end space-x-4">
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Export PDF
-            </button>
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Export XLS
-            </button>
-        </div>
+        </form>
     </div>
 </div>
+
+<div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Hasil Laporan</h5>
+        <div>
+            <button class="btn btn-danger btn-sm">Export PDF</button>
+            <button class="btn btn-success btn-sm">Export Excel</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="text-center text-muted p-5">
+            <p>Pilih jenis laporan dan periode, lalu klik "Tampilkan" untuk melihat hasilnya.</p>
+        </div>
+        <!-- Report data will be displayed here -->
+    </div>
+</div>
+
 <?= $this->endSection() ?>
