@@ -24,6 +24,9 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     // Product routes
     $routes->resource('products', ['controller' => 'Product']);
 
+    // Category routes
+    $routes->resource('categories', ['controller' => 'CategoryController']);
+
     // Stock routes
     $routes->get('stock', 'Stock::index');
     $routes->post('stock/in', 'Stock::stockIn');

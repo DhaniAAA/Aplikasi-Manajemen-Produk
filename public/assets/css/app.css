@@ -96,3 +96,51 @@ body {
 .table thead th {
     border-bottom: 2px solid #dee2e6;
 }
+
+/* === Modern Theme Overrides === */
+:root {
+    --primary-color: #6366f1; /* indigo-500 */
+    --primary-hover: #4f46e5;
+    --bg-light: #f8fafc;
+    --text-color: #212529;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-color);
+}
+
+a {
+    color: var(--primary-color);
+}
+a:hover {
+    color: var(--primary-hover);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(99, 102, 241, 0.1);
+    border-left: 3px solid var(--primary-color);
+}
+
+.card {
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}

@@ -28,7 +28,7 @@
                                 <td><?= esc($product['code']) ?></td>
                                 <td><?= esc($product['name']) ?></td>
                                 <td><?= esc($product['stock']) ?></td>
-                                <td>Rp <?= number_format($product['price'], 0, ',', '.') ?></td>
+                                <td>Rp <?= number_format($product['sell_price'], 0, ',', '.') ?></td>
                                 <td><?= esc($product['category_name']) ?></td>
                                 <td class="text-end">
                                     <a href="<?= base_url('products/edit/' . $product['id']) ?>" class="btn btn-warning btn-sm">Edit</a>

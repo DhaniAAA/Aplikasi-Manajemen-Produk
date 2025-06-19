@@ -31,7 +31,25 @@
                         </div>
                     </div>
                     <!-- Dynamic product rows will be handled by JavaScript -->
-                    <div id="stock-in-items"></div>
+                    <div id="stock-in-items">
+                        <!-- Initial row -->
+                        <div class="row mb-2 align-items-center stock-item">
+                            <div class="col-md-5">
+                                <select name="product_id[]" class="form-select" required>
+                                    <option value="">Pilih Produk...</option>
+                                    <?php foreach ($products as $product): ?>
+                                        <option value="<?= $product['id'] ?>"><?= esc($product['name']) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="number" name="quantity[]" class="form-control" placeholder="Jumlah" required min="1">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-danger btn-sm remove-stock-item">Hapus</button>
+                            </div>
+                        </div>
+                    </div>
                     <button type="button" id="add-stock-in-item" class="btn btn-secondary btn-sm mb-3">Tambah Produk</button>
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">Simpan Stok Masuk</button>
@@ -58,7 +76,25 @@
                         </div>
                     </div>
                     <!-- Dynamic product rows will be handled by JavaScript -->
-                    <div id="stock-out-items"></div>
+                    <div id="stock-out-items">
+                        <!-- Initial row -->
+                        <div class="row mb-2 align-items-center stock-item">
+                            <div class="col-md-5">
+                                <select name="product_id[]" class="form-select" required>
+                                    <option value="">Pilih Produk...</option>
+                                    <?php foreach ($products as $product): ?>
+                                        <option value="<?= $product['id'] ?>"><?= esc($product['name']) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="number" name="quantity[]" class="form-control" placeholder="Jumlah" required min="1">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-danger btn-sm remove-stock-item">Hapus</button>
+                            </div>
+                        </div>
+                    </div>
                     <button type="button" id="add-stock-out-item" class="btn btn-secondary btn-sm mb-3">Tambah Produk</button>
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">Simpan Stok Keluar</button>
@@ -69,4 +105,58 @@
     </div>
 </div>
 
+<?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to add a new product row
+    function addRow(container) {
+        const itemHtml = `
+        <div class="row mb-2 align-items-center stock-item">
+            <div class="col-md-5">
+                <select name="product_id[]" class="form-select" required>
+                    <option value="">Pilih Produk...</option>
+                    <?php foreach ($products as $product): ?>
+                        <option value="<?= $product['id'] ?>"><?= esc($product['name']) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="col-md-5">
+                <input type="number" name="quantity[]" class="form-control" placeholder="Jumlah" required min="1">
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger btn-sm remove-stock-item">Hapus</button>
+            </div>
+        </div>`;
+        container.insertAdjacentHTML('beforeend', itemHtml);
+    }
+
+    // Add item button listeners
+    document.getElementById('add-stock-in-item').addEventListener('click', function () {
+        addRow(document.getElementById('stock-in-items'));
+    });
+
+    document.getElementById('add-stock-out-item').addEventListener('click', function () {
+        addRow(document.getElementById('stock-out-items'));
+    });
+
+    // Remove item listener (using event delegation)
+    document.getElementById('stockTabContent').addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('remove-stock-item')) {
+            // Prevent removing the last item
+            if (e.target.closest('.tab-pane').querySelectorAll('.stock-item').length > 1) {
+                e.target.closest('.stock-item').remove();
+            }
+        }
+    });
+
+    // Display session messages
+    <?php if (session()->getFlashdata('success')): ?>
+        alert('<?= session()->getFlashdata('success') ?>');
+    <?php elseif (session()->getFlashdata('error')): ?>
+        alert('<?= session()->getFlashdata('error') ?>');
+    <?php endif; ?>
+});
+</script>
 <?= $this->endSection() ?>
