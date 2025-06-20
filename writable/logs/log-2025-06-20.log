@@ -1,0 +1,320 @@
+DEBUG - 2025-06-20 03:54:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 03:54:33 --> CSRF token verified.
+ERROR - 2025-06-20 03:54:35 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('127.0.0.1', 'root', Object(SensitiveParameterValue), 'manajemen_produ...', 3306, '', 0)
+#1 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Aplikasi-Manajemen-Produk\system\BaseModel.php(717): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\Aplikasi-Manajemen-Produk\app\Controllers\Auth.php(30): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(933): App\Controllers\Auth->login()
+#8 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Aplikasi-Manajemen-Produk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Aplikasi-Manajemen-Produk\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Aplikasi-Manajemen-Produk\system\BaseModel.php(717): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\Aplikasi-Manajemen-Produk\app\Controllers\Auth.php(30): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(933): App\Controllers\Auth->login()
+#7 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#8 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\Aplikasi-Manajemen-Produk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\laragon\www\Aplikasi-Manajemen-Produk\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#13 {main}
+CRITICAL - 2025-06-20 03:54:35 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `username` = :username:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(717): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Controllers\Auth.php(30): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->login()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+INFO - 2025-06-20 03:56:17 --> CSRF token verified.
+ERROR - 2025-06-20 03:56:19 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('127.0.0.1', 'root', Object(SensitiveParameterValue), 'manajemen_produ...', 3306, '', 0)
+#1 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Aplikasi-Manajemen-Produk\system\BaseModel.php(717): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\Aplikasi-Manajemen-Produk\app\Controllers\Auth.php(30): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(933): App\Controllers\Auth->login()
+#8 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Aplikasi-Manajemen-Produk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Aplikasi-Manajemen-Produk\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Aplikasi-Manajemen-Produk\system\BaseModel.php(717): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\Aplikasi-Manajemen-Produk\app\Controllers\Auth.php(30): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(933): App\Controllers\Auth->login()
+#7 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#8 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\Aplikasi-Manajemen-Produk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\laragon\www\Aplikasi-Manajemen-Produk\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#13 {main}
+CRITICAL - 2025-06-20 03:56:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `username` = :username:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(717): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Controllers\Auth.php(30): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->login()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+DEBUG - 2025-06-20 03:56:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 03:56:26 --> CSRF token verified.
+DEBUG - 2025-06-20 03:56:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 03:56:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 03:56:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-20 03:56:56 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Builder::paginate()
+[Method: GET, Route: products]
+in APPPATH\Models\ProductModel.php on line 91.
+ 1 APPPATH\Controllers\Product.php(25): App\Models\ProductModel->getProductWithCategory(null, 1, 20)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Product->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Product))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+DEBUG - 2025-06-20 03:57:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 03:57:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 03:57:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 03:57:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 03:57:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-20 03:57:39 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Builder::paginate()
+[Method: GET, Route: products]
+in APPPATH\Models\ProductModel.php on line 91.
+ 1 APPPATH\Controllers\Product.php(25): App\Models\ProductModel->getProductWithCategory(null, 1, 20)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Product->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Product))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+CRITICAL - 2025-06-20 03:58:20 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Connection::getHostname()
+[Method: GET, Route: database-test]
+in APPPATH\Controllers\DatabaseTest.php on line 26.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DatabaseTest->index()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatabaseTest))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+CRITICAL - 2025-06-20 04:09:50 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Connection::getHostname()
+[Method: GET, Route: database-test]
+in APPPATH\Controllers\DatabaseTest.php on line 26.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DatabaseTest->index()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatabaseTest))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+DEBUG - 2025-06-20 04:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-20 04:14:01 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Builder::paginate()
+[Method: GET, Route: products]
+in APPPATH\Models\ProductModel.php on line 91.
+ 1 APPPATH\Controllers\Product.php(25): App\Models\ProductModel->getProductWithCategory(null, 1, 20)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Product->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Product))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+DEBUG - 2025-06-20 04:14:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:14:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-20 04:14:19 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Builder::paginate()
+[Method: GET, Route: products]
+in APPPATH\Models\ProductModel.php on line 91.
+ 1 APPPATH\Controllers\Product.php(25): App\Models\ProductModel->getProductWithCategory(null, 1, 20)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Product->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Product))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+DEBUG - 2025-06-20 04:20:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:20:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:20:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:20:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:20:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:20:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:20:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 04:21:04 --> CSRF token verified.
+DEBUG - 2025-06-20 04:21:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-20 04:21:04 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ('IN-1750393264', 'in', '2025-06-20', 'Pembeli', '2', '2025-06-20 04:21' at line 1 in C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `tr...', 0)
+#1 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tr...')
+#2 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tr...')
+#3 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tr...', Array, false)
+#4 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\laragon\www\Aplikasi-Manajemen-Produk\system\BaseModel.php(843): CodeIgniter\Model->doInsert(Array)
+#6 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\laragon\www\Aplikasi-Manajemen-Produk\app\Controllers\Stock.php(48): CodeIgniter\Model->insert(Array)
+#8 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(933): App\Controllers\Stock->stockIn()
+#9 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Stock))
+#10 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Aplikasi-Manajemen-Produk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Aplikasi-Manajemen-Produk\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+ERROR - 2025-06-20 04:21:04 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`manajemen_produk`.`transaction_details`, CONSTRAINT `transaction_details_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `transactions` (`id`)) in C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `tr...', 0)
+#1 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tr...')
+#2 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tr...')
+#3 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tr...', Array, false)
+#4 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\laragon\www\Aplikasi-Manajemen-Produk\system\BaseModel.php(843): CodeIgniter\Model->doInsert(Array)
+#6 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\laragon\www\Aplikasi-Manajemen-Produk\app\Controllers\Stock.php(66): CodeIgniter\Model->insert(Array)
+#8 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(933): App\Controllers\Stock->stockIn()
+#9 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Stock))
+#10 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Aplikasi-Manajemen-Produk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Aplikasi-Manajemen-Produk\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+ERROR - 2025-06-20 04:21:04 --> mysqli_sql_exception: Unknown column 'action' in 'field list' in C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ac...', 0)
+#1 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ac...')
+#2 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ac...')
+#3 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ac...', Array, false)
+#4 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\laragon\www\Aplikasi-Manajemen-Produk\system\BaseModel.php(843): CodeIgniter\Model->doInsert(Array)
+#6 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\laragon\www\Aplikasi-Manajemen-Produk\app\Controllers\Stock.php(75): CodeIgniter\Model->insert(Array)
+#8 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(933): App\Controllers\Stock->stockIn()
+#9 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Stock))
+#10 C:\laragon\www\Aplikasi-Manajemen-Produk\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Aplikasi-Manajemen-Produk\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Aplikasi-Manajemen-Produk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Aplikasi-Manajemen-Produk\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-06-20 04:21:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:21:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:21:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 04:21:29 --> CSRF token verified.
+DEBUG - 2025-06-20 04:21:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-20 04:21:29 --> ErrorException: Undefined array key "product_code"
+[Method: POST, Route: reports/generate]
+in APPPATH\Views\reports\stock_report.php on line 23.
+ 1 APPPATH\Views\reports\stock_report.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "product_code"', 'C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\app\\Views\\reports\\stock_report.php', 23)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\app\\Views\\reports\\stock_report.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('reports/stock_report', null, true)
+ 5 APPPATH\Views\reports\index.php(53): CodeIgniter\View\View->include('reports/stock_report')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\app\\Views\\reports\\index.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('reports/index', [], true)
+ 9 APPPATH\Controllers\Reports.php(74): view('reports/index', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Reports->generate()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reports))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+INFO - 2025-06-20 04:22:47 --> CSRF token verified.
+DEBUG - 2025-06-20 04:22:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-20 04:22:47 --> ErrorException: Undefined array key "unit"
+[Method: POST, Route: reports/generate]
+in APPPATH\Views\reports\stock_report.php on line 28.
+ 1 APPPATH\Views\reports\stock_report.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "unit"', 'C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\app\\Views\\reports\\stock_report.php', 28)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\app\\Views\\reports\\stock_report.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('reports/stock_report', null, true)
+ 5 APPPATH\Views\reports\index.php(53): CodeIgniter\View\View->include('reports/stock_report')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\app\\Views\\reports\\index.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('reports/index', [], true)
+ 9 APPPATH\Controllers\Reports.php(74): view('reports/index', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Reports->generate()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reports))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+DEBUG - 2025-06-20 04:23:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:23:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-20 04:24:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 04:24:54 --> CSRF token verified.
+DEBUG - 2025-06-20 04:24:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-20 04:24:54 --> ErrorException: Undefined array key "unit"
+[Method: POST, Route: reports/generate]
+in APPPATH\Views\reports\stock_report.php on line 28.
+ 1 APPPATH\Views\reports\stock_report.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "unit"', 'C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\app\\Views\\reports\\stock_report.php', 28)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\app\\Views\\reports\\stock_report.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('reports/stock_report', null, true)
+ 5 APPPATH\Views\reports\index.php(53): CodeIgniter\View\View->include('reports/stock_report')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\app\\Views\\reports\\index.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('reports/index', [], true)
+ 9 APPPATH\Controllers\Reports.php(74): view('reports/index', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Reports->generate()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reports))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Aplikasi-Manajemen-Produk\\public\\index.php')
+INFO - 2025-06-20 04:25:17 --> CSRF token verified.
+DEBUG - 2025-06-20 04:25:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -53,11 +53,16 @@ class CategoryModel extends Model
         return $dropdown;
     }
 
-    public function getCategoryWithProductCount()
+    public function getCategoryWithProductCount($page = null, $perPage = 20)
     {
-        return $this->select('categories.*, COUNT(products.id) as product_count')
+        $builder = $this->select('categories.*, COUNT(products.id) as product_count')
                     ->join('products', 'products.category_id = categories.id', 'left')
-                    ->groupBy('categories.id')
-                    ->findAll();
+                    ->groupBy('categories.id');
+        
+        if ($page !== null) {
+            return $builder->paginate($perPage, 'bootstrap_pager', $page);
+        }
+        
+        return $builder->findAll();
     }
 }

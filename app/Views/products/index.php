@@ -51,7 +51,9 @@
         
         <!-- Pagination -->
         <div class="d-flex justify-content-end">
-            <?php // echo $pager->links() ?>
+            <?php if (isset($pager)) : ?>
+                <?= $pager->links('bootstrap_pager', 'bootstrap_pager') ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>

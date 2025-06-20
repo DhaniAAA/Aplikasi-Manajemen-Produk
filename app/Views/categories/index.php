@@ -21,6 +21,7 @@
                         <th>ID</th>
                         <th>Nama Kategori</th>
                         <th>Deskripsi</th>
+                        <th>Jumlah Produk</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -30,6 +31,7 @@
                             <td><?= $category['id'] ?></td>
                             <td><?= esc($category['name']) ?></td>
                             <td><?= esc($category['description']) ?></td>
+                            <td><?= $category['product_count'] ?></td>
                             <td>
                                 <a href="<?= base_url('categories/edit/' . $category['id']) ?>" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="<?= base_url('categories/' . $category['id']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
@@ -42,6 +44,13 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="d-flex justify-content-end mt-3">
+            <?php if (isset($pager)) : ?>
+                <?= $pager->links('bootstrap_pager', 'bootstrap_pager') ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>

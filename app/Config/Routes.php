@@ -17,6 +17,9 @@ $routes->post('register', 'Auth::createAccount');
 $routes->get('forgot-password', 'Auth::forgotPassword');
 $routes->post('forgot-password', 'Auth::sendResetLink');
 
+// Database test route
+$routes->get('database-test', 'DatabaseTest::index');
+
 // Application routes (protected by auth filter)
 $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('dashboard', 'Dashboard::index');
@@ -35,4 +38,8 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     // Report routes
     $routes->get('reports', 'Reports::index');
     $routes->post('reports/generate', 'Reports::generate');
+    
+    // Settings routes
+    $routes->get('settings', 'Settings::index');
+    $routes->post('settings/update', 'Settings::update');
 });

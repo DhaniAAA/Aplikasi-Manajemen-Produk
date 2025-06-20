@@ -77,21 +77,29 @@ class ProductModel extends Model
         ]
     ];
 
-    public function getProductWithCategory($id = null)
+    public function getProductWithCategory($id = null, $page = null, $perPage = 20)
     {
-        $builder = $this->db->table('products');
-        $builder->select('products.*, categories.name as category_name');
-        $builder->join('categories', 'categories.id = products.category_id');
+        $this->select('products.*, categories.name as category_name');
+        $this->join('categories', 'categories.id = products.category_id');
         
         if ($id !== null) {
-            return $builder->where('products.id', $id)->get()->getRowArray();
+            return $this->where('products.id', $id)->first();
         }
         
-        return $builder->get()->getResultArray();
+        if ($page !== null) {
+            return $this->paginate($perPage, 'bootstrap_pager', $page);
+        }
+        
+        return $this->findAll();
     }
 
+    /**
+     * Mendapatkan daftar produk dengan stok di bawah atau sama dengan batas minimum
+     * 
+     * @return array Daftar produk dengan stok rendah
+     */
     public function getLowStockProducts()
     {
-        return $this->where('stock <=', 'min_stock', false)->findAll();
+        return $this->where('stock <= min_stock', NULL, FALSE)->findAll();
     }
-} 
+}

@@ -44,10 +44,18 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="text-center text-muted p-5">
-            <p>Pilih jenis laporan dan periode, lalu klik "Tampilkan" untuk melihat hasilnya.</p>
-        </div>
-        <!-- Report data will be displayed here -->
+        <?php if (isset($report_view)): ?>
+            <h4 class="text-center mb-3"><?= $report_title ?></h4>
+            <?php if (isset($start_date) && isset($end_date)): ?>
+                <p class="text-center mb-4">Periode: <?= date('d/m/Y', strtotime($start_date)) ?> - <?= date('d/m/Y', strtotime($end_date)) ?></p>
+            <?php endif; ?>
+            
+            <?= $this->include($report_view) ?>
+        <?php else: ?>
+            <div class="text-center text-muted p-5">
+                <p>Pilih jenis laporan dan periode, lalu klik "Tampilkan" untuk melihat hasilnya.</p>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 

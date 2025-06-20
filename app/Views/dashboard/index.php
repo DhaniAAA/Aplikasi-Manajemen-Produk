@@ -44,7 +44,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Transaksi Hari Ini</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($today_transactions) ?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-exchange-alt fa-3x text-gray-300"></i>
@@ -67,7 +67,8 @@
                     <tr>
                         <th>Waktu</th>
                         <th>Pengguna</th>
-                        <th>Aktivitas</th>
+                        <th>Aksi</th>
+                        <th>Deskripsi</th>
                         <th>IP Address</th>
                     </tr>
                 </thead>
@@ -77,13 +78,14 @@
                             <tr>
                                 <td><?= date('d/m/Y H:i', strtotime($activity['created_at'])) ?></td>
                                 <td><?= esc($activity['user_name']) ?></td>
-                                <td><?= esc($activity['activity']) ?></td>
+                                <td><?= esc($activity['action']) ?></td>
+                                <td><?= esc($activity['description']) ?></td>
                                 <td><?= esc($activity['ip_address']) ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else : ?>
                         <tr>
-                            <td colspan="4" class="text-center">Tidak ada aktivitas terbaru.</td>
+                            <td colspan="5" class="text-center">Tidak ada aktivitas terbaru.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>

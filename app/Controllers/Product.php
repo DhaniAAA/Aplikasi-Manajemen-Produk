@@ -17,9 +17,13 @@ class Product extends BaseController
 
     public function index()
     {
+        $currentPage = $this->request->getVar('page_bootstrap_pager') ?? 1;
+        $perPage = session()->get('settings.items_per_page') ?? 20;
+        
         $data = [
             'title' => 'Daftar Produk',
-            'products' => $this->productModel->getProductWithCategory(),
+            'products' => $this->productModel->getProductWithCategory(null, $currentPage, $perPage),
+            'pager' => $this->productModel->pager,
         ];
         return view('products/index', $data);
     }

@@ -14,7 +14,8 @@ class ActivityLogModel extends Model
 
     protected $allowedFields = [
         'user_id',
-        'activity',
+        'action',
+        'description',
         'ip_address'
     ];
 
@@ -24,19 +25,25 @@ class ActivityLogModel extends Model
 
     public function getRecentActivities($limit = 10)
     {
-        return $this->select('activity_logs.*, users.name as user_name')
-                    ->join('users', 'users.id = activity_logs.user_id')
-                    ->orderBy('activity_logs.created_at', 'DESC')
-                    ->limit($limit)
-                    ->find();
+        $db = \Config\Database::connect();
+        
+        $query = $db->table('activity_logs')
+            ->select('activity_logs.*, users.name as user_name')
+            ->join('users', 'users.id = activity_logs.user_id')
+            ->orderBy('activity_logs.created_at', 'DESC')
+            ->limit($limit)
+            ->get();
+            
+        return $query->getResultArray();
     }
 
-    public function logActivity($userId, $activity)
+    public function logActivity($userId, $action, $description = '')
     {
         return $this->insert([
             'user_id' => $userId,
-            'activity' => $activity,
+            'action' => $action,
+            'description' => $description,
             'ip_address' => service('request')->getIPAddress()
         ]);
     }
-} 
+}

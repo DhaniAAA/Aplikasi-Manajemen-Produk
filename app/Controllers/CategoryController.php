@@ -16,9 +16,13 @@ class CategoryController extends BaseController
 
     public function index()
     {
+        $currentPage = $this->request->getVar('page_bootstrap_pager') ?? 1;
+        $perPage = session()->get('settings.items_per_page') ?? 20;
+        
         $data = [
             'title' => 'Daftar Kategori',
-            'categories' => $this->categoryModel->findAll(),
+            'categories' => $this->categoryModel->getCategoryWithProductCount($currentPage, $perPage),
+            'pager' => $this->categoryModel->pager,
         ];
         return view('categories/index', $data);
     }
